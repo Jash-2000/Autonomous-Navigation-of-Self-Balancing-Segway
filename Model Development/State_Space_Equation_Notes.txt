@@ -1,0 +1,20 @@
+->  x` = Ax + Bu
+      y = Cx + Du
+
+-> State Variables are variables that are needed to fully describe and predict the future of the system.
+     No of state variables = Order of the system.
+
+-> Pole Placement => Make controller gain as 1 and change the feedback scale factor in order to bring the poles to RHS.
+Make the Eigen Values equal to negative and find the gains.
+
+-> Configurations forming 0 ss error
+	1) Scaled reference - Here the state is feedbacked and feedback gain is not unity
+	2) Steady state error - Here the state is feedbcked and feedback gain is unity but input has a scale factor
+	3) Normal Controller with Integral action
+
+-> LQR => In this we follow the same configuration of a pole placement scheme, the only difference is that we solve a assignment
+	problem to get the values of K and Kr in a way that we ballance the Cost(performance) and Acuator effort( energy)
+
+The first part is done by integrating the time it takes for the state variables to reach to zero (Thus we integrate it).
+The second part is taken care by integrating the Input.
+ 
