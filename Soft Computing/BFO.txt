@@ -1,0 +1,4 @@
+-> Foraging is search of food. The bacteria moves towards nutrients with least use of energy. 
+It is an evolutionary algorithm that minimizes the cost with swarm property.
+
+-> 
