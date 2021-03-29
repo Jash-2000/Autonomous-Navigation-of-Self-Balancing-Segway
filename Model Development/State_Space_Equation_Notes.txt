@@ -17,4 +17,9 @@ Make the Eigen Values equal to negative and find the gains.
 
 The first part is done by integrating the time it takes for the state variables to reach to zero (Thus we integrate it).
 The second part is taken care by integrating the Input.
+
+=======================================================
+
+Eigen Values closest to img axis decides how quickly the controller will converge.
+If EV are Img, it is oscillatory signal.
  
