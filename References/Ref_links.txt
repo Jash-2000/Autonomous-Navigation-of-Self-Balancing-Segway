@@ -4,6 +4,4 @@
 
 -> https://www.mathworks.com/help/control/getstart/pole-placement.html?s_eid=PSM_15028
 
--> https://learning.edx.org/course/course-v1:MITx+6.302.1x+2T2016/home
-
 -> https://github.com/rasalkumar/Dynamic-Path-Planning/tree/bfcd24a1a8ddd8cb0409928858b5a894df2cd3c8
