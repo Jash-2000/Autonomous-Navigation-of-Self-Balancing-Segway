@@ -31,7 +31,8 @@ Research Project under **[Dr. Puneeth Mishra](https://www.bits-pilani.ac.in/pila
  2.4 __Genetic Algorithm__
   - <Add>
  2.5 __Reinforcement Learning__
-  - <Add>
+  - J. (2021). Jash-2000/Pole-Balance-Control-Algorithms. [GitHub](https://github.com/Jash-2000/Pole-Balance-Control-Algorithms)
+  - 
  2.6 __Other Fuzzy and PID techniues__
   - <Add>
 
@@ -40,6 +41,8 @@ Research Project under **[Dr. Puneeth Mishra](https://www.bits-pilani.ac.in/pila
 
  * How to Use a Kalman Filter in Simulink. (2018, October 4). How to Use a Kalman Filter in Simulink - [File Exchange - MATLAB Central](https://in.mathworks.com/matlabcentral/fileexchange/69004-how-to-use-a-kalman-filter-in-simulink?s_eid=PSM_15028)
  * State Estimation Using Time-Varying Kalman Filter - MATLAB & Simulink - MathWorks India. (2021). [MathWorks](https://in.mathworks.com/help/control/getstart/estimating-states-of-time-varying-systems-using-kalman-filters.html).
+ *  How to Use an Extended Kalman Filter in Simulink. (2018, October 4). How to Use an Extended Kalman Filter in Simulink - File Exchange - MATLAB Central. https://in.mathworks.com/matlabcentral/fileexchange/69005-how-to-use-an-extended-kalman-filter-in-simulink?s_eid=PSM_15028
+ *  Becker, A. (2018). Online Kalman Filter Tutorial. Kalman Filter Tutorial. https://www.kalmanfilter.net/alphabeta.html
  *  
 
  4. Path Planning and Ambient Intelligence
