@@ -1,4 +1,42 @@
 -> Foraging is search of food. The bacteria moves towards nutrients with least use of energy. 
 It is an evolutionary algorithm that minimizes the cost with swarm property.
 
--> 
+-> There are 4 steps in the process
+
+1) Chemotaxis -> Swim or Tumble
+Same direction is swim otherwise tumble. 
+
+2) Swarmig -> All the bacteria has this group unity that help them collectively make descisions for global optimums. They release attractant to signal other bacterua to swarm towards it.
+
+3) In reproduction, half of the unhealthy bacteria die off. Others reproduce.
+
+4) Elimination and dispersion -> To remove the bacteria trapped in local minima, we use this step.
+
+
+====================================================================
+
+Controllablity -> rank(ctrb(A,B)) has to be 4 = umber of states
+
+If so, we can design u = -Kx so that x_dot = (A-BK)x and then, eig(A-BK) is proper.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
