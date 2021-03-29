@@ -29,11 +29,11 @@ Research Project under **[Dr. Puneeth Mishra](https://www.bits-pilani.ac.in/pila
   - 
   
  2.4 __Genetic Algorithm__
-  -
+  - <Add>
  2.5 __Reinforcement Learning__
-  -
+  - <Add>
  2.6 __Other Fuzzy and PID techniues__
-  -
+  - <Add>
 
 
  3. Sensor-Fusion and Estimation Techniques
