@@ -25,7 +25,7 @@ The Presentation can be found [here](https://docs.google.com/presentation/d/1ksm
   
  2.2 __Linear Quadratic Regulator(LQR) Controller__
   - MathWorks. (2021). Linear-Quadratic Regulator (LQR) design - MATLAB lqr.[Design a LQR controller in MATLAB.](https://www.mathworks.com/help/control/ref/lqr.html)
-  - Steve Brunton. (2017, January 29). Linear Quadratic Regulator (LQR) Control for the Inverted Pendulum on a Cart [Control Bootcamp]. [YouTube](https://www.youtube.com/watch?  v=1_UobILf3cc)
+  - Steve Brunton. (2017, January 29). Linear Quadratic Regulator (LQR) Control for the Inverted Pendulum on a Cart [Control Bootcamp]. [YouTube](https://www.youtube.com/watch?v=1_UobILf3cc)
   - MIT Robotics. (2021). Course | edX. [Introduction to Control System Design-Computational State Space Approaches](https://learning.edx.org/course/course-v1:MITx+6.302.1x+2T2016/home).
   - S. Chantarachit, "Development and Control Segway by LQR adjustable Gain," 2019 International Conference on Information and Communications Technology (ICOIACT), Yogyakarta, Indonesia, 2019, pp. 649-653, [doi: 10.1109/ICOIACT46704.2019.8938489](https://ieeexplore.ieee.org/document/8938489).
 
