@@ -1,0 +1,11 @@
+A Neural Genetic Training for LQR Controllers
+Tuning Applied to Inverted Pendulum
+
+
+Improved Genetic Algorithm Based Optimal Control
+for A Flying Inverted Pendulum
+
+
+Comparison between GA-based LQR and
+Conventional LQR Control Method ofDFIG Wind
+Energy System
