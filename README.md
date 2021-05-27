@@ -32,6 +32,8 @@ The Presentation can be found [here](https://docs.google.com/presentation/d/1ksm
 
  2. **Optimization Strategies for dynamic control**
 
+Different techniques were used to optimized the controller parameters for smooth transactions.
+ 
  2.1 __Bacteria Foraging__
   - NCTEL. (2016, May 19). Bacterial Foraging Optimization by Er Neha Sharma. [YouTube](https://www.youtube.com/watch?v=oB1hghTwl6Y)
   - Chen, H., Zhu, Y., & Hu, K. (2011). Adaptive Bacterial Foraging Optimization. Abstract and Applied Analysis, 2011, 1/27. https://doi.org/10.1155/2011/108269
@@ -50,8 +52,7 @@ The Presentation can be found [here](https://docs.google.com/presentation/d/1ksm
   - 
   
  2.4 __Genetic Algorithm__
-  - 
-
+  - S. Choueiry, M. Owayjan, H. Diab and R. Achkar, "Mobile Robot Path Planning Using Genetic Algorithm in a Static Environment," 2019 Fourth International Conference on Advances in Computational Tools for Engineering Applications (ACTEA), 2019, pp. 1-6, doi: 10.1109/ACTEA.2019.8851100.
 
  2.5 __Reinforcement Learning__
   - J. (2021). Jash-2000/Pole-Balance-Control-Algorithms. [GitHub](https://github.com/Jash-2000/Pole-Balance-Control-Algorithms)
@@ -63,7 +64,7 @@ The Presentation can be found [here](https://docs.google.com/presentation/d/1ksm
   - Odry, Á., Fullér, R., Rudas, I. J., & Odry, P. (2020). Fuzzy control of self‐balancing robots: A control laboratory project. Computer Applications in Engineering Education, 28(3), 512–535. https://doi.org/10.1002/cae.22219
 
 
- 3. Sensor-Fusion and Estimation Techniques
+ 3. **Sensor-Fusion and Estimation Techniques**
 
  * How to Use a Kalman Filter in Simulink. (2018, October 4). How to Use a Kalman Filter in Simulink - [File Exchange - MATLAB Central](https://in.mathworks.com/matlabcentral/fileexchange/69004-how-to-use-a-kalman-filter-in-simulink?s_eid=PSM_15028)
  * State Estimation Using Time-Varying Kalman Filter - MATLAB & Simulink - MathWorks India. (2021). [MathWorks](https://in.mathworks.com/help/control/getstart/estimating-states-of-time-varying-systems-using-kalman-filters.html).
@@ -73,7 +74,7 @@ The Presentation can be found [here](https://docs.google.com/presentation/d/1ksm
  *  A. (2021). aipiano/ESEKF_IMU. [GitHub](https://github.com/aipiano/ESEKF_IMU)
  *  
 
- 4. Path Planning and Ambient Intelligence
+ 4. **Path Planning and Ambient Intelligence**
 
  * Y. (2019). Yaaximus/artificial-potential-field-matlab. [GitHub](https://github.com/Yaaximus/artificial-potential-field-matlab)
  * B. (2016). bearadamsj/multi-agent-with-obstacle-avoidance. [GitHub](https://github.com/bearadamsj/multi-agent-with-obstacle-avoidance)
