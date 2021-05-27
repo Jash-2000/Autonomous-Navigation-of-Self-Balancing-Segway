@@ -23,6 +23,7 @@ The Presentation can be found [here](https://docs.google.com/presentation/d/1ksm
 
  1. **For Segway Control**
 
+* Design and Control for Differential Drive Mobile Robot [https://www.ijert.org/research/design-and-control-for-differential-drive-mobile-robot-IJERTV6IS100138.pdf](https://www.ijert.org/research/design-and-control-for-differential-drive-mobile-robot-IJERTV6IS100138.pdf)
 * Mohammed, I. K., & Abdulla, A. I. (2020). Balancing a Segway robot using LQR controller based on genetic and bacteria foraging optimization algorithms. TELKOMNIKA (Telecommunication Computing Electronics and Control), 18(5), 2642. [https://doi.org/10.12928/telkomnika.v18i5.14717](https://doi.org/10.12928/telkomnika.v18i5.14717)
 * EIT TUK. (2018, February 7). State Space Control for the Pendulum-Cart System: A short tutorial on using Matlab® and Simulink®. [YouTube](https://www.youtube.com/watch?v=hAI8Ag3bzeE)
 * mouhknowsbest. (2013, June 24). 4.4 Segway Robots. [YouTube](https://www.youtube.com/watch?v=bJM9jU-P_H0)
