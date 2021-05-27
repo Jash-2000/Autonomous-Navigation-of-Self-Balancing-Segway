@@ -1,8 +1,23 @@
 # Autonomous Navigation and Balance of 2-Wheeled Self-Balancing Segway Robot
 
-Research Project under **[Dr. Puneeth Mishra](https://www.bits-pilani.ac.in/pilani/puneetmishra/Profile)**, under the domain of [**Industrial Automation and Control**](https://drive.google.com/file/d/1s5DQQBiqCRzZao_UDhHWK7q6NdQnE2wv/view?usp=sharing).
+Research Project under **[Dr. Puneeth Mishra](https://www.bits-pilani.ac.in/pilani/puneetmishra/Profile)**, under the domain of [**Industrial Automation and Control**](https://drive.google.com/file/d/1s5DQQBiqCRzZao_UDhHWK7q6NdQnE2wv/view?usp=sharing). The project inolved the following:
+ * Path planning
+ * Controlled movement( angluar as well as radial ) 
+ * Balancing
+ * Real World noise Filtering and tackling
+
+The Servo and Regulatory response of the model is as follows:
+
+![Regulatory Action](https://user-images.githubusercontent.com/47540320/119830455-e7dc6380-bf19-11eb-9e39-bc87ba84b8cd.jpg) 
+![Servo Action](https://user-images.githubusercontent.com/47540320/119830462-e90d9080-bf19-11eb-9c32-3aefaa1d1599.jpg)
+
+---
+
+## Details of the project
 
 The Presentation can be found [here](https://docs.google.com/presentation/d/1ksmdR5DNKdCcXbnUg9fruMfYAnvMTaGtsh33f6NXTIc/edit#slide=id.gcc9c102ac7_0_0) and the final report can be found [here](https://docs.google.com/document/d/1I3v9-CtLqWZXrXXcUxuTgMAddK_5AzI-V6CtLki1vE0/edit#).
+
+---
 
 ## References
 
