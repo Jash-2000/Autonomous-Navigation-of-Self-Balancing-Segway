@@ -1,8 +1,5 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-Created on Thu Nov 16 12:56:52 2017
-@author: arslan
+    Code for Ant Colony Optimization for path planning.
 """
 import matplotlib.pyplot as plt
 import numpy as np
