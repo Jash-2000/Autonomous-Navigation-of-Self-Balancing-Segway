@@ -1,0 +1,2 @@
+The angular deviation is controlled using an additional PID controller with proper gains so that the deviational time constant matches with that of displacement (LQR).
+This helps in developing sampling based trajectory which would then be used while path planning.
