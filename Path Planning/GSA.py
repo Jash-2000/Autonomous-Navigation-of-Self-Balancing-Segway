@@ -249,17 +249,11 @@ def main():
     ax.plot(agents[id].fit_mat, color='tab:blue', label='best_fit')
     ax.plot(data, color='tab:orange', label='average_fit')
     ax.set_title('fit function')
-    fig.legend(loc='up right')
+    fig.legend(loc='upper right')
 
     print(t)
     print(path)
-
-    while (1):
-        plt.show()
-
+    plt.show()
 
 if __name__ == '__main__':
-    print(__file__ + " start!!")
     main()
-
-    print(__file__ + " Done!!")
