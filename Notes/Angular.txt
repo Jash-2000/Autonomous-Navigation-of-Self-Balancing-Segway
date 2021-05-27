@@ -1,2 +1,8 @@
 The angular deviation is controlled using an additional PID controller with proper gains so that the deviational time constant matches with that of displacement (LQR).
 This helps in developing sampling based trajectory which would then be used while path planning.
+
+Model developed from these 2 papers https://www.ijert.org/research/design-and-control-for-differential-drive-mobile-robot-IJERTV6IS100138.pdf and file:///E:/BITS%20Pilani/3-2/IIC/Autonomous-Navigation-of-Self-Balancing-Segway/Final/Assignment%20IIC%20-%20Group%2014/Original%20Paper/Balancing_a_Segway_robot_using_LQR_contr.pdf I came to this conclusion.
+
+theta / Va = (Km) / (s*(RJs + KmKe))
+
+And for entire robot, 2*pi/r ( thetar - thtal) = theta_robot
