@@ -1,12 +1,4 @@
-%% Version 4 deals with the angular movement of the segway and its control. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Km = 1;
-%K1 = 2*Km*Ke;
-%beta = 2*Mw + Mp + 2*Iw/(r.^2);
-%alpha = Ip*beta + 2*Mp*(I.^2)*(Mw + Iw/(r.^2));
-%Kw = 2*Mw + 2*Iw/(r.^2);
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Combined Plot for real path.
 Km = 0.062;
 Ke = 0.062;
 r = 1.6;
@@ -89,11 +81,41 @@ sts_angle = tf([-K(1)*0.7141,-K(1)*1.018e-06,-K(1)*9.143e-15],[1, 41.12, 325.5, 
 
 %% Plotting the params.
 
-figure
-subplot(311), impulse(sts_dist);   % Impulse reponse of distance
+figure(1)
+subplot(211), impulse(sts_dist);   % Impulse reponse of distance
 subplot(212), step(sts_dist);      % Step Response of distance
 %% Developing the Controller for angular deviations
 
 tf_turn = tf(Km,[r*Iw,Km*Ke,0]);
 % We know find the settling time for sts_dist and use
 % the same for tuning tf_turn's PID controller
+
+%% Deviational Variables
+
+X_req = 7;
+Theta_req = pi/2;
+
+%% Plotting the Path
+sim('SegwayV4_Combined.slx');
+
+rad = evalin('base','R_Pos.Data');
+theta = evalin('base','Theta_Pos.Data');
+time = evalin('base','t.Data');
+
+figure(2)
+plot(time,theta)
+figure(3)
+plot(time,rad)
+
+x = zeros(1,length(rad));
+y = zeros(1,length(rad));
+
+for i = 1:length(rad)
+    x(i) = rad(i)*cos(theta(i));
+    y(i) = rad(i)*sin(theta(i));    
+end
+
+figure(4)
+plot(x,y)
+xlim([-10 10])
+ylim([-10 10])
