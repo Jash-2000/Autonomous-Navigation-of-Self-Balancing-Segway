@@ -81,7 +81,7 @@ The Project has a complex pipeline, scripted in different languages. A central p
   
   ![Ouputs of LQR](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Servo%20and%20Reg%20Action.PNG)
   
-  * PID - The PID module was used to controller the Bot's angular movement. Both the Wheels recieved different Input in order to move in angular fashion. The tuning was done in a way to achive the same time constant as the LQR controller. A PID fashion was choosen as this model was of SISO type. The following image shows the PID controll in action for an input of 90 degrees ( 1.57 rad).
+  * PID - The PID module was used to controller the Bot's angular movement. Both the Wheels recieved different Input in order to move in angular fashion. The tuning was done in a way to achive the same time constant as the LQR controller. A PID fashion was choosen as this model was of SISO type. The following image shows the PID controll in action for an input of 90 degrees (1.57 rad).
   
   ![PID Controller](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Angular%20Dynamics%20of%20BOT.png)
   
@@ -92,9 +92,18 @@ The Project has a complex pipeline, scripted in different languages. A central p
   * For LQR Design - Bacteria Foraging and Genetic Algorithm were used for tuning the params for LQR controller. For the design and given constraints, GA proved to be a better option. The following figure shows the Deviation of Q11 with Iteration number
   ![Q11](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Q11vsIteration.PNG)
  
-  * For Tuning PID - 
-  * For Path Planning - 
+  * For Tuning PID - Seperate PID Controllers were used for the 2 wheels based on the control function developed. PID controller also used a Low pass Filter for Noise Filteration and other tuning characteristics. The Finas equation was as follows
+  ```
+        s = tf('s');
+        tf_PID = P + I/s + D*N/(1 + N/s);
+  ```
+   
+  * For Path Planning - The following figure is self explainatory. For smapling of the points in the path, I used the technique of **constant Radial Scan** where the scan radius was fixed to 10. 
 
+    |   GSA     |   APF     |
+    |   ---     |   ---     |
+    |   ![](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/GSA.png)   |   ![](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/APF.PNG)   |
+    
 ---
 
 ## Points to consider.
