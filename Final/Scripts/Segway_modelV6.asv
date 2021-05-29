@@ -1,5 +1,5 @@
 %% Final Script.
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 Km = 0.062;
 Ke = 0.062;
 r = 1.6;
@@ -83,8 +83,28 @@ sts_angle = tf([-K(1)*0.7141,-K(1)*1.018e-06,-K(1)*9.143e-15],[1, 41.12, 325.5, 
 %% Plotting the params.
 
 figure(1)
-subplot(211), impulse(sts_dist);   % Impulse reponse of distance
-subplot(212), step(sts_dist);      % Step Response of distance
+subtitle('Balancing Action')
+
+subplot(2,2,1), impulse(sts_dist);   % Impulse reponse of distance
+title('Regulatory Action')
+xlabel('Time')
+ylabel('Distance')
+
+subplot(2,2,2), step(sts_dist);      % Step Response of distance
+title('Servo Action')
+xlabel('Time')
+ylabel('Distance')
+
+subplot(2,2,3), impulse(sts_angle);   % Impulse reponse of Balancing Angle
+title('Regulatory Action')
+xlabel('Time')
+ylabel('Angular Dip in Cat-Pole')
+
+subplot(2,2,4), step(sts_angle);      % Step Response of Balancing Angle
+title('Servo Action')
+xlabel('Time')
+ylabel('Angular Dip in Cat-Pole')
+
 %% Developing the Controller for angular deviations
 
 tf_turn = tf(Km,[r*Iw,Km*Ke,0]);
@@ -93,8 +113,14 @@ tf_turn = tf(Km,[r*Iw,Km*Ke,0]);
 
 %% Now the Loop will run for the data points
 X_req = 10;
-x_last = 350;
-y_last = 50;
+
+x_last = 200;
+y_last = 450;
+
+Time = [];
+Theta = [];
+Rad = [];
+Angle = [];
 
 for i = 1:length(arr)
     Theta_req = arr(i);
@@ -103,6 +129,7 @@ for i = 1:length(arr)
     rad = evalin('base','R_Pos.Data');
     theta = evalin('base','Theta_Pos.Data');
     time = evalin('base','t.Data');
+    angle = evalin('base', 'angle.Data');
 
     x = zeros(1,length(rad));
     y = zeros(1,length(rad));
@@ -117,13 +144,27 @@ for i = 1:length(arr)
     
     figure(2)
     plot(x,y)
+    title('Path Followed while balancing')
     hold on
     xlim([0 500])
     ylim([0 500])
+    
+    % Appending the Matrix for display.
+    time = 
+    
+    Time = [Time; time];
+    Rad = [Rad; rad];
+    Theta = [Theta; theta];
+    Angle = [Angle;angle];
 end
-%hold off
+hold off;
 
-%figure(3)
-%plot(Time,Theta)
-%figure(4)
-%plot(Time,Rad)
+figure(3)
+plot(Time',Theta')
+title('The Angle change in the bot trajectory')
+figure(4)
+plot(Time',Rad')
+title('Distane travelled')
+figure(5)
+plot(Time',Angle')
+title('Dip in the inverted pendulum')
