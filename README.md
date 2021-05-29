@@ -2,19 +2,27 @@
 
 Research Project under **[Dr. Puneeth Mishra](https://www.bits-pilani.ac.in/pilani/puneetmishra/Profile)**, under the domain of [**Industrial Instrumentation and Automation Control**](https://drive.google.com/file/d/1s5DQQBiqCRzZao_UDhHWK7q6NdQnE2wv/view?usp=sharing). 
 
-The Project involves the **Desgin and Implementation of a precise Control model** for a **2-wheeled Segway Robot** for implementing a **parametized self-balancing robot**. Additionally, the robot can also plan its path and **navigate autonomously**. **Constraints on the physical model** were modelled precisley keeping into account the frictional and electrical resistances. Finally, various high speed and precise **Soft Computing techniques** were deployed for tuning the controllers and planning path.  
+The Project involves the **Desgin and Implementation of a precise Control model** for a **2-wheeled Segway Robot** for implementing a **parametized( give and input as distance, speed or even a function of angular dip as present in new segways) self-balancing robot**. Additionally, the robot can also plan its path and **navigate autonomously**. **Constraints on the physical model** were modelled precisley keeping into account the frictional and electrical resistances. Finally, various high speed and precise **Soft Computing techniques** were deployed for tuning the controllers and planning path.  
+
+**The Project was done in 2 phases, the Presentation for Phase 1 can be found [here](https://docs.google.com/presentation/d/1ksmdR5DNKdCcXbnUg9fruMfYAnvMTaGtsh33f6NXTIc/edit#slide=id.gcc9c102ac7_0_0) and the Report for Phase 1 can be found [here](https://docs.google.com/document/d/1I3v9-CtLqWZXrXXcUxuTgMAddK_5AzI-V6CtLki1vE0/edit#). Phase 2 report in under development but I have updated the scripts.**
 
 The project's Tech Stack Inolved the following:
  * **Path Planning Module**
     1. Using Artificial Potential Field.
     2. Using Gravitational Search Algorithm.
     3. Deviational Transformationa and Shift of Frames.
+ 
  * **Navigation Module**
     1. Modelling of Chasis, Motor, Pole and Battery system.
     2. LQR Controller Design for Radial movement.
     3. Advance PID Controller for Angular movement.
     4. Feedback Balance Scheme for the Verticle Pole. 
 
+* **Parameter Tuning**
+    1. Ricarti Solver Model was used for LQR's cost equation.
+    2. Bacteria Foraging and Genetic Algorithm were used to find Q and R matrix.
+    3. Ant Colony Optimization was utilized for tuning P,I and D parameters. 
+    
 
 **The Servo Problem is defined as the dynamic response when the controller changes its set-point and Regulatory Problem is defined when the Controller tries to Manipulate the system input to counteract the effects of disturbances. The figure below shows these responses for the developed LQR Controller**
 
@@ -22,37 +30,68 @@ The project's Tech Stack Inolved the following:
 | ----------------- | ------------ |
 | ![Regulatory Action](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Regulatory%20Action.jpg) | ![Servo Action](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Servo%20Action.jpg) |
 
-**The precision in the movement of the Bot is as plotted below ( Input given was 7 units towards North)**
-![Precise Path Planning](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Precise%20Path%20Planning.jpg)
+**The precision in the movement of the Bot is as plotted below ( Input given was 7 units towards North)**. Notice how the controller does not move in a straight line due to the **Real-world contoller constraints and frcitional losses**.
+
+![Precise Path Planning](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Precise%20Path%20Planning.PNG)
 
 **The Voltage Supplied to 2 wheels vary as per the requirement. For a simple Servo Acion, where both the wheels get same Input (Theta = 0), the following graph was developed ( note that the Y-axis units are in mV)**
+
 ![Voltage Graph](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Voltage.PNG)
 
 ---
 
-## How to Run the Project
+## Running the Project - Example with steps
 
-The Project involves the servo as well as regulatory control of a 2-wheeled segway robot. BFO-LQR and Genetic-LQR are used for the balance of the bot and Ant Colony Optimization based PID tuning is done for the bot's angular control.
-The Path Planning is done using 2 strategies: APF and GSA and the co-ordinates are communicated to MATLAB via python wrapper. 
-
-Additional features can be addded like considering the human's weight and/or speed control with angular dip (as available in new segways).
-
-The Presentation can be found [here](https://docs.google.com/presentation/d/1ksmdR5DNKdCcXbnUg9fruMfYAnvMTaGtsh33f6NXTIc/edit#slide=id.gcc9c102ac7_0_0) and the final report can be found [here](https://docs.google.com/document/d/1I3v9-CtLqWZXrXXcUxuTgMAddK_5AzI-V6CtLki1vE0/edit#).
-
+The Project has a complex pipeline, scripted in different languages. A central pipeline with a better user interface is under construction. Follow the following steps to run the script.
+  1. Clone the following repository and install Python( and additionally OpenCV and Spicy.io ) and setup your Matlab ( This project uses 2021b version ).
+  
+  2. Open the **Path Planning** folder and run any algorithm. For example, running APF would be like the following:
+   ```cmd
+      cd Path Planning
+      cd APF
+      python main.py
+   ```
+   You can change the number and positions of the Obstacles in the **main.py** script. After running the code, the result would look like the following:
+   
+   ![Simple Example](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Estimated%20Path%20Planning.PNG)
+   
+   3. After you close the script, a file would be created in the same root directory, with the name **points.mat**. Add this file to Matlab and release its contents. The workspace would now have an array with the name **arr**. This vector contains the Angluar deviations needed (as the radial distance is fixed to 10 in main.py (**scan distance**))
+   ![Angular Changes in the plot](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Angle_Change%20in%20Path.png)
+   
+   4. **SegwayV4_combined.slx** contains the final simulation for the Sequential **Controller Design**. It is already configured to run with the autostep solver (ode45). Also make sure that the simulation time remains 5 second. The following figure shows my simulation file with the 2 subsystems acting as the controllers. 
+   
+   ![Segway_simulink](https://user-images.githubusercontent.com/47540320/120081091-50257380-c0d9-11eb-91c5-c454cd282a93.PNG)
+   
+   5. Run the MATLAB script **Segway_modelV6.m** and wait for the results to show up. The following path will show up and this is the actual path that would be generated with the given physical parameters.
+   ![Actual Path](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Path_Actual.png)
+   
+   6. Other figures showing different parameters are as follows: 
+   
+   |    Distance Travelled    |    Angular Dip in Pole   |    Angular movement by the controller    |    
+   |    ------------------    |    -------------------   |    ---------------------------------     |
+   |  ![Distance](https://user-images.githubusercontent.com/47540320/120081076-3f74fd80-c0d9-11eb-80ce-954a885b83be.PNG)    |  ![Inverted Pendulum](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Dip%20in%20Segway.png) |  ![Angular Variation](https://user-images.githubusercontent.com/47540320/120081385-09d11400-c0db-11eb-979d-e6d555c356ed.PNG) |
+ 
 ---
 
 ## Controller Design
 
-  * Steady State Model - 
-  * LQR - 
-  * PID - 
-  * Multi-Step Model - 
+  * Steady State Model - The ss model was made taking into account the Chasis, Motors, Wheel and the Pole. The model used 4 state variables - **Radial Distance, Linear Speed, Angular Dip in pole, Rate of Angular Dip**. The output of the model were **Distance and Angular Dip in Pole**. 
+  
+  * LQR - Linear Quadratic Regulator controller was used to take care of balanced radial movement of the bot (i.e. 1-D movement only). A set point change can be given to any state hence, we can order the bot to autonomously move, attain a speed or even attach a functional block relating the angular dip with the speed of the bot!!! The following figure shows the Regulatory and Servo Response of both the outputs.
+  
+  ![Ouputs of LQR](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Servo%20and%20Reg%20Action.PNG)
+  
+  * PID - The PID module was used to controller the Bot's angular movement. Both the Wheels recieved different Input in order to move in angular fashion. The tuning was done in a way to achive the same time constant as the LQR controller. A PID fashion was choosen as this model was of SISO type. The following image shows the PID controll in action for an input of 90 degrees ( 1.57 rad).
+  
+  ![PID Controller](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Angular%20Dynamics%20of%20BOT.png)
   
 ---
 
 ## Soft Computing Algorithms
 
-  * For LQR Design - 
+  * For LQR Design - Bacteria Foraging and Genetic Algorithm were used for tuning the params for LQR controller. For the design and given constraints, GA proved to be a better option. The following figure shows the Deviation of Q11 with Iteration number
+  ![Q11](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Q11vsIteration.PNG)
+ 
   * For Tuning PID - 
   * For Path Planning - 
 
@@ -67,3 +106,9 @@ The Presentation can be found [here](https://docs.google.com/presentation/d/1ksm
   2. Communication to and from MATLAB and Simulink and other user defined functions is only possible through the Base workspace and it is impotant to use **evalin()** and **assignin()** functions for that.
 
   3. The Dynamics for the radial and Angular movement differ and thus, we need to model the control scheme accordingly.
+  
+  4. It is very important to keep into account that the speed varies according to the distance that needs to be covered and that the time taken remain constant. 
+
+---
+
+### If you find my work helpful in anyway, please do not forget to Star my repository.
