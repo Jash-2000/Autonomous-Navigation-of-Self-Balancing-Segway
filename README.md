@@ -1,7 +1,5 @@
 # Autonomous Navigation and Balance of 2-Wheeled Self-Balancing Segway Robot
 
-Research Project under **[Dr. Puneeth Mishra](https://www.bits-pilani.ac.in/pilani/puneetmishra/Profile)**, under the domain of [**Industrial Instrumentation and Automation Control**](https://drive.google.com/file/d/1s5DQQBiqCRzZao_UDhHWK7q6NdQnE2wv/view?usp=sharing). 
-
 The Project involves the **Desgin and Implementation of a precise Control model** for a **2-wheeled Segway Robot** for implementing a **parametized( give and input as distance, speed or even a function of angular dip as present in new segways) self-balancing robot**. Additionally, the robot can also plan its path and **navigate autonomously**. **Constraints on the physical model** were modelled precisley keeping into account the frictional and electrical resistances. Finally, various high speed and precise **Soft Computing techniques** were deployed for tuning the controllers and planning path.  
 
 **The Project was done in 2 phases, the Presentation for Phase 1 can be found [here](https://docs.google.com/presentation/d/1ksmdR5DNKdCcXbnUg9fruMfYAnvMTaGtsh33f6NXTIc/edit#slide=id.gcc9c102ac7_0_0) and the Report for Phase 1 can be found [here](https://docs.google.com/document/d/1I3v9-CtLqWZXrXXcUxuTgMAddK_5AzI-V6CtLki1vE0/edit#). Phase 2 report in under development but I have updated the scripts.**
