@@ -1,0 +1,6 @@
+math
+pygame
+queue
+cv2
+numpy
+matplotlibs
