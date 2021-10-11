@@ -1,3 +1,7 @@
+"""
+	Author : Jash Shah
+"""
+
 print("\n This is the A-star Visualization. Once you choose the input image for the map, the map will render into a grid fromat. To see it again into the original format, press the 's' key")
 input("You can then add the trees but you wont be able to alter the system boundaries. \nPress any key to continue to choose your image")
 
@@ -13,6 +17,10 @@ import math
 from queue import PriorityQueue
 
 start_pos = []
+re = 0
+rs = 0
+ce = 0
+cs = 0 
 
 def get_clicked_pos(pos, rows, width):
 	gap = width // rows
@@ -40,6 +48,7 @@ def main(win, width):
 					grid[numc][numr].make_tree()
 					original_grid[numc][numr].make_tree()
 	else:
+		#ROWS = 50
 		ROWS = int(input("\n Enter the number of rows you want in the blank map. : "))
 		grid = make_grid(ROWS, width)
 		original_grid = make_grid(ROWS, width)
@@ -63,10 +72,14 @@ def main(win, width):
 				if not start and spot != end:
 					start = spot
 					start.make_start()
+					rs = row
+					cs = col
 
 				elif not end and spot != start:
 					end = spot
 					end.make_end()
+					re = row
+					ce = col
 
 				elif spot != end and spot != start:
 					spot.make_tree()
@@ -85,7 +98,9 @@ def main(win, width):
 			
 				if event.key == pygame.K_SPACE and start and end:
 					finish = 1
+					cnt = 0    # For saving fig in form of phases.
 					while(finish):
+						cnt = cnt + 1
 						# Now we ensure that the view point of the robot is just of 3 unit radius.
 						for row in grid:
 							for spot in row:
@@ -100,12 +115,12 @@ def main(win, width):
 						(rows,cols) = start.get_pos()
 						start_pos.append((rows, cols))
 						rowe,cole = end.get_pos()
-						plot(ROWS, start_pos, rowe, cole, grid)
+						plot(ROWS, start_pos, rowe, cole, grid, cnt)
 
 						# This is the step where we actually apply the algorithm.
 						algorithm(lambda: draw(win, grid, ROWS, width), grid, start, end)
 						finish, start, end = mover(lambda: draw(win, grid, ROWS, width), grid, original_grid, start, end)
-						time.sleep(5)
+						time.sleep(3)
 
 				if event.key == pygame.K_r:
 					start = None
@@ -115,5 +130,23 @@ def main(win, width):
 				if event.key == pygame.K_s:
 					showImg()
 	pygame.quit()
-
+	start_pos.append((re,ce))
+	
 main(WIN, WIDTH)
+print("\n\n\n Now ending the game !!!!! \n See the path the bot travelled.")
+print(start_pos)
+
+##################################
+# Converting it to MATLAB format
+import scipy.io as io
+start_pos = np.array(start_pos)
+
+PATH = []
+for num in range(len(start_pos) - 1):
+	theta_num = ( start_pos[num][1] - start_pos[num+1][1] )
+	theta_den = (start_pos[num+1][0] - start_pos[num][0])
+	PATH.append( math.atan2( theta_num, theta_den ) )
+print(PATH)
+PATH = np.array(PATH)
+io.savemat('path.mat', {'data' : PATH})
+io.savemat('points.mat', { 'data' : start_pos})

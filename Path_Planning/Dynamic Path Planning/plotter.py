@@ -1,8 +1,10 @@
 import matplotlib.pyplot as plt
 from draw import *
 import numpy as np
+import time
 
-def plot(ROWS, start_pos, rowe, cole, grid):
+def plot(ROWS, start_pos, rowe, cole, grid, cnt):
+	import matplotlib.pyplot as plt
 	Map = np.zeros(shape=(ROWS,ROWS,3))
 
 	# Empty Path to be made white
@@ -36,7 +38,12 @@ def plot(ROWS, start_pos, rowe, cole, grid):
 	Map[cole, rowe, 2] = 0
 
 	Map = Map.astype(int)
-	print(Map)
 	# Now Plotting the image
 	plt.imshow(Map)
+	plt.title("Phase " + str(cnt))
+	path__ = "Phase_Output/Phase_" + str(cnt) + ".png"
+	plt.savefig(path__)
 	plt.show()
+	time.sleep(3)
+	plt.close("all")
+	del plt

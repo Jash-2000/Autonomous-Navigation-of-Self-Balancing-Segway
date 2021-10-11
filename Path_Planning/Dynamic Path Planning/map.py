@@ -5,7 +5,7 @@ flag = 0
 
 path = "../Maps/"
 choice = input("\n Enter e, m, h and b for easy/medium/hard and Blank level map analysis : ")
-
+#choice = "m"
 if (choice == "m"):
 	img_path = path + "med.png"
 	file_path = path + "med.map"
