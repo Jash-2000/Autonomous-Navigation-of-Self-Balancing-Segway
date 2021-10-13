@@ -1,92 +1,84 @@
-print("\n This is the A-star Visualization. Once you choose the input image for the map, the map will render into a grid fromat. To see it again into the original format, press the 's' key \n")
-input("Press any key to continue to choose your image")
-
-from map import *
-from draw import *
-from astar import *
-
-import pygame
+import numpy as np 
+from cv2 import cv2
 import math
-from queue import PriorityQueue
+import scipy.io
 
-def get_clicked_pos(pos, rows, width):
-	gap = width // rows
-	y, x = pos
+from positional import Position
+from Goal import *
+from Agent import *
+from Obstacle import *
 
-	row = y // gap
-	col = x // gap
+# Main
+if __name__ == '__main__':
+    
+    # Defining world dimensions
+    xlim = 500
+    ylim = 500
+    world_size = (xlim,ylim)
 
-	return row, col
+    # Initializing blank canvas(OpenCV) with white color
+    image = np.ones((world_size[1],world_size[0],3),dtype=np.uint8) * 255
 
-def main(win, width):
-	
-	if (flag == 0):
-		Map, pad = getDetails()
-		ROWS = pad			
-		grid = make_grid(ROWS, width)
-	
-		for numr,r in enumerate(Map):
-			for numc,c in enumerate(r):
-				if ( Map[numr][numc] == '@' or Map[numr][numc] == 'T'):
-					grid[numc][numr].make_barrier() 
-	else:
-		ROWS = int(input("\n Enter the number of rows you want in the blank map. : "))
-		grid = make_grid(ROWS, width)
-			
-	start = None
-	end = None
+    # Defining agent and goal
+    aPosx = 200
+    aPosy = 50
+    agent = Agent(Position(aPosx, aPosy), scan_radius=10, possible_moves=30)
+    Matlab_agent_x = aPosx
+    Matlab_agent_y = ylim - aPosy 
+    goal = Goal(Position(250, 450), sigma=math.sqrt(world_size[0]**2 + world_size[1]**2))
 
-	run = True			# If True, Pygame engine would work.
-	while run:
-		draw(win, grid, ROWS, width)			# Showing Colour of each node at every iteration.
-		
-		# Getting event type output from Pygame engine 
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				run = False
+    # Defining obstacles in a list
+    sigma_obstacles = 5
+    obstacles = [
+                Obstacle(Position(150, 180), sigma=sigma_obstacles, draw_radius=4*sigma_obstacles), 
+                Obstacle(Position(150, 280), sigma=sigma_obstacles, draw_radius=4*sigma_obstacles),
+                Obstacle(Position(150, 380), sigma=sigma_obstacles, draw_radius=4*sigma_obstacles), 
+                Obstacle(Position(250, 180), sigma=sigma_obstacles, draw_radius=4*sigma_obstacles), 
+                Obstacle(Position(250, 280), sigma=sigma_obstacles, draw_radius=4*sigma_obstacles), 
+                Obstacle(Position(250, 380), sigma=sigma_obstacles, draw_radius=4*sigma_obstacles)
+                ]
 
-			if pygame.mouse.get_pressed()[0]: # LEFT
-				pos = pygame.mouse.get_pos()
-				row, col = get_clicked_pos(pos, ROWS, width)
-				spot = grid[row][col]
-				if not start and spot != end:
-					start = spot
-					start.make_start()
+    # Drawing objects
+    agent.draw(image)
+    goal.draw(image)
+    for obstacle in obstacles:
+        obstacle.draw(image)
 
-				elif not end and spot != start:
-					end = spot
-					end.make_end()
+    # Displaying initial frame and wait for intial key press
+    cv2.imshow('Output', image)
 
-				elif spot != end and spot != start:
-					spot.make_barrier()
+    Theta_list = []
 
-			elif pygame.mouse.get_pressed()[2]: # RIGHT
-				pos = pygame.mouse.get_pos()
-				row, col = get_clicked_pos(pos, ROWS, width)
-				spot = grid[row][col]
-				spot.reset()
-				if spot == start:
-					start = None
-				elif spot == end:
-					end = None
+    while Position.calculate_distance(agent.position, goal.position) > 10:
+        possible_moves = agent.get_possible_moves()
+        min_value = math.inf
+        best_move = possible_moves[0] # initializing best move with first move
+        
+        # Finding move with the least value
+        for move in possible_moves:
+            move_value = goal.get_attraction_force(move)
+            for obstacle in obstacles:
+                move_value += obstacle.get_repulsion_force(move)
 
-			if event.type == pygame.KEYDOWN:
-			
-				if event.key == pygame.K_SPACE and start and end:
-					for row in grid:
-						for spot in row:
-							spot.update_neighbors(grid)
+            if move_value < min_value:
+                min_value = move_value
+                best_move = move
+        
+        # Converting Theta according to MATLAB comvention
+        theta_num = ( (ylim - best_move.y) - (ylim - agent.position.y) )
+        theta_den = (best_move.x - agent.position.x)
+        Theta_list.append( math.atan2( theta_num, theta_den ) )
+        
+        # Setting best move as agent's next position
+        agent.position = best_move
 
-					# This is the step where we actually apply the algorithm.
-					algorithm(lambda: draw(win, grid, ROWS, width), grid, start, end)
+        # Displaying updated frame
+        agent.draw(image)
+        cv2.imshow('Output', image)
+        cv2.waitKey(20)
+    
+    # Hold on last frame
+    cv2.waitKey(0) 
 
-				if event.key == pygame.K_r:
-					start = None
-					end = None
-					grid = make_grid(ROWS, width)
-
-				if event.key == pygame.K_s:
-					showImg()
-	pygame.quit()
-
-main(WIN, WIDTH)
+arr = np.asarray(Theta_list)
+scipy.io.savemat('points.mat', dict(arr=arr))

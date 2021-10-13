@@ -112,10 +112,10 @@ tf_turn = tf(Km,[r*Iw,Km*Ke,0]);
 % the same for tuning tf_turn's PID controller
 
 %% Now the Loop will run for the data points
-X_req = 10;
+X_req = 1;      % Step input for each time
 
-x_last = 200;
-y_last = 450;
+x_last = 6;   % This is the initial position of the segway
+y_last = 40;   
 
 Time = [];
 Theta = [];
@@ -147,15 +147,26 @@ for i = 1:length(arr)
     plot(x,y)
     title('Path Followed while balancing')
     hold on
-    xlim([0 500])
-    ylim([0 500])
+    xlim([0 50])
+    ylim([0 50])
     
     % Appending the Matrix for display.
-    time = 5*n + time;
-    Time = [Time; time];
-    Rad = [Rad; rad];
-    Theta = [Theta; theta];
-    Angle = [Angle;angle];
+    if (n>=1)
+        time = 5*n + time;
+        Time = [Time; time];
+        rad = Rad(end) + rad;
+        Rad = [Rad; rad];
+        theta = theta + Theta(end);
+        Theta = [Theta; theta];
+        angle = angle + Angle(end);
+        Angle = [Angle;angle];
+    else
+        Time = time;
+        Rad = rad;
+        Theta = theta;
+        Angle = angle;
+    end
+    
     
     n = n+1;
 end
