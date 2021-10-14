@@ -44,12 +44,16 @@ The Project has a complex pipeline, scripted in different languages. A central p
   2. Open the **Path Planning** folder and run any algorithm. For example, running APF would be like the following:
    ```cmd
       cd Path Planning
-      cd APF
+      cd Global Path Planning
       python main.py
    ```
    You can change the number and positions of the Obstacles in the **main.py** script. After running the code, the result would look like the following:
    
-   ![Simple Example](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Estimated%20Path%20Planning.PNG)
+   Instead, if you are willing to use Dynamic Path Planning of Incremental Learning, you can run it as follows:
+   ```
+   
+   ```
+   <img src="https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Estimated%20Path%20Planning.PNG" width="200" />
    
    3. After you close the script, a file would be created in the same root directory, with the name **points.mat**. Add this file to Matlab and release its contents. The workspace would now have an array with the name **arr**. This vector contains the Angluar deviations needed (as the radial distance is fixed to 10 in main.py (**scan distance**))
    ![Angular Changes in the plot](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Angle_Change%20in%20Path.png)
