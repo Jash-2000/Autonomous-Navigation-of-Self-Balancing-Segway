@@ -49,21 +49,22 @@ The Project has a complex pipeline, scripted in different languages. A central p
    ```
    You can change the number and positions of the Obstacles in the **main.py** script. After running the code, the result would look like the following:
    
-   Instead, if you are willing to use Dynamic Path Planning of Incremental Learning, you can run it as follows:
-   ```
-   
-   ```
-   <img src="https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Estimated%20Path%20Planning.PNG" width="200" />
-   
+ <img src="https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Estimated%20Path%20Planning.PNG" width="200" />
+  
+  
+   Instead, if you are willing to use Dynamic Path Planning of Incremental Learning, you can run it as per the instructions given [here](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Path_Planning/Readme.md). The output would look like this:
+
+ <img alt = "Map Pic" src="https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Vids/Complete_Model_Astar.mp4" width="200" />
+    
    3. After you close the script, a file would be created in the same root directory, with the name **points.mat**. Add this file to Matlab and release its contents. The workspace would now have an array with the name **arr**. This vector contains the Angluar deviations needed (as the radial distance is fixed to 10 in main.py (**scan distance**))
-   ![Angular Changes in the plot](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Angle_Change%20in%20Path.png)
+   ![Angular Changes in the plot](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Astar_Angle_Dip_Segway.png)
    
    4. **SegwayV4_combined.slx** contains the final simulation for the Sequential **Controller Design**. It is already configured to run with the autostep solver (ode45). Also make sure that the simulation time remains 5 second. The following figure shows my simulation file with the 2 subsystems acting as the controllers. 
    
    ![Segway_simulink](https://user-images.githubusercontent.com/47540320/120081091-50257380-c0d9-11eb-91c5-c454cd282a93.PNG)
    
    5. Run the MATLAB script **Segway_modelV6.m** and wait for the results to show up. The following path will show up and this is the actual path that would be generated with the given physical parameters.
-   ![Actual Path](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Path_Actual.png)
+   ![Actual Path](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Astar_Path_Segway.png)
    
    6. Other figures showing different parameters are as follows: 
    
@@ -85,6 +86,23 @@ The Project has a complex pipeline, scripted in different languages. A central p
   
   ![PID Controller](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Angular%20Dynamics%20of%20BOT.png)
   
+---
+
+## Images and Videos for Active Path planning module
+
+The following table shows how the bot tackles the issue of dynamic path planning. In the series of figures below, the bot does not know about an obstacle in its path ahead. As soon as it recieves the map, it dynamically updates the path it has planned. 
+
+| Phase 1   | Phase 2   | Phase 3   | Phase 4   |
+|-----------|-----------|-----------|-----------|
+|![](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Screenshot%202021-10-11%20at%205.12.34%20PM.png)  | ![](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Screenshot%202021-10-11%20at%204.47.46%20PM.png) | ![](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Screenshot%202021-10-11%20at%204.48.04%20PM.png) | ![](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Screenshot%202021-10-11%20at%204.48.23%20PM.png) | ![](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/blob/main/Images/Screenshot%202021-10-11%20at%204.48.45%20PM.png) |
+
+More information about all the phases is available in this folder : [Phase_Output](https://github.com/Jash-2000/Autonomous-Navigation-of-Self-Balancing-Segway/tree/main/Phase_Output)
+
+
+The following Video summarizes the process:
+
+[![Watch the video](https://i9.ytimg.com/vi/5eUxYay-Muo/mq2.jpg?sqp=CMSfoosG&rs=AOn4CLBCIYm_Z4v1Gz-9HiVHitL-r1AI3A)](https://youtu.be/5eUxYay-Muo)
+
 ---
 
 ## Soft Computing Algorithms
